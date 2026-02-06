@@ -3,7 +3,7 @@ import { GoogleGenerativeAI, SchemaType } from "@google/generative-ai";
 import { ExtractionResult } from "../types";
 
 // Always use process.env.API_KEY directly as per guidelines
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const ai = new GoogleGenerativeAI({ apiKey: process.env.API_KEY });
 
 export const extractLedgerInfo = async (input: string): Promise<ExtractionResult[] | null> => {
   try {
