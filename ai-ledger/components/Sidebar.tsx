@@ -100,10 +100,10 @@ const Sidebar: React.FC<SidebarProps> = ({ sheetUrl, webhookUrl, onUpdateUrl, on
           <div className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-lg p-6 space-y-4 shadow-2xl overflow-y-auto max-h-[90vh]">
             <h3 className="text-lg font-bold text-sky-400">Google 試算表連動設定 (myledger)</h3>
             <div className="text-sm text-slate-300 space-y-3 leading-relaxed">
-              <p>1. 開啟試算表，點選 <b>「擴充功能 > Apps Script」</b>。</p>
+              <p>1. 開啟試算表，點選 <b>「擴充功能 &gt; Apps Script」</b>。</p>
               <p>2. 貼入以下代碼 (會自動對準 <b>myledger</b> 工作表)：</p>
               <pre className="bg-black p-3 rounded text-[10px] text-emerald-400 overflow-x-auto border border-slate-800">{scriptCode}</pre>
-              <p>3. 點選 <b>「部署 > 新增部署」</b>。</p>
+              <p>3. 點選 <b>「部署 &gt; 新增部署」</b>。</p>
               <p>4. 種類選 <b>「網頁應用程式」</b>，關鍵：<b>「誰可以存取」必選「所有人 (Anyone)」</b>。</p>
               <p>5. 複製網址，貼回左側 Webhook 欄位。</p>
             </div>
