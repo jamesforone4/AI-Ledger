@@ -76,7 +76,7 @@ const EntryDetailModal: React.FC<EntryDetailModalProps> = ({ entry, onClose, onD
             <p className="text-xs text-slate-400 font-bold uppercase mb-2">Google Sheets 同步狀態</p>
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-              <p className="text-xs font-mono">Synced to [我的記帳本] > Sheet1</p>
+              <p className="text-xs font-mono">Synced to [我的記帳本] &gt; Sheet1</p>
             </div>
             <p className="text-[10px] text-slate-500 mt-2 font-mono">Row Index: {entry.id.substring(0,4)} | Range: A:D</p>
           </div>
