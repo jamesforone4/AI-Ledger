@@ -1,0 +1,7 @@
+{
+  "name": "AI Ledger",
+  "description": "一個基於 Gemini AI 的智慧記帳工具，能自動從對話中提取日期、項目、金額與分類，並自動同步至 Google 試算表。",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
