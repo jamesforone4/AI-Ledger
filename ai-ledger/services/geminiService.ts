@@ -12,8 +12,8 @@ export const extractLedgerInfo = async (input: string): Promise<ExtractionResult
       throw new Error("找不到 API Key。請確認 Vercel 中的 VITE_GEMINI_API_KEY 設定正確並已 Redeploy。");
     }
 
-    // 使用最穩定的 v1beta 路徑與 gemini-1.5-flash 模型
-    const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+    // 將原本的 1.5-flash 換成 2.0-flash-exp
+const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${apiKey}`;
 
     const prompt = `你是一個精確的記帳助手。請從輸入中提取消費資訊。
 今日日期: ${today}
