@@ -3,6 +3,10 @@ import { ExtractionResult } from "../types";
 
 // 確保 Vercel 後台有 VITE_GEMINI_API_KEY
 const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+// 增加一个防御性逻辑：如果 Key 没拿到，就在控制台报错
+if (!apiKey) {
+  console.error("错误：未找到 VITE_GEMINI_API_KEY，请检查环境变数设置。");
+}
 const genAI = new GoogleGenerativeAI(apiKey || "");
 
 export const extractLedgerInfo = async (input: string): Promise<ExtractionResult[] | null> => {
