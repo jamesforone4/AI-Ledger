@@ -1,12 +1,13 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { ExtractionResult } from "../types";
 
-// 確保 Vercel 後台有 VITE_GEMINI_API_KEY
+// 取得 API Key (Vite 必須以 VITE_ 開頭)
 const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-// 增加一个防御性逻辑：如果 Key 没拿到，就在控制台报错
+
 if (!apiKey) {
-  console.error("错误：未找到 VITE_GEMINI_API_KEY，请检查环境变数设置。");
+  console.error("Critical: VITE_GEMINI_API_KEY is missing!");
 }
+
 const genAI = new GoogleGenerativeAI(apiKey || "");
 
 export const extractLedgerInfo = async (input: string): Promise<ExtractionResult[] | null> => {
@@ -17,14 +18,15 @@ export const extractLedgerInfo = async (input: string): Promise<ExtractionResult
     const prompt = `你是一個精確的記帳助手。請從使用者的輸入中提取消費資訊。
 輸入內容: "${input}"
 今日日期: ${today}
-請歸類為：食、衣、住、行、育、樂。`;
+請歸類為：食、衣、住、行、育、樂。
+輸出格式必須是 JSON 陣列。`;
 
     const result = await model.generateContent({
       contents: [{ role: "user", parts: [{ text: prompt }] }],
       generationConfig: {
         responseMimeType: "application/json",
         responseSchema: {
-          type: "array" as any, // 這裡直接用字串，繞過導出問題
+          type: "array" as any,
           items: {
             type: "object" as any,
             properties: {
@@ -44,8 +46,9 @@ export const extractLedgerInfo = async (input: string): Promise<ExtractionResult
     
     const results = JSON.parse(text);
     return Array.isArray(results) ? results : [results];
-  } catch (error) {
-    console.error("Gemini Error:", error);
-    return null;
+  } catch (error: any) {
+    console.error("Gemini API Error:", error);
+    // 拋出具體錯誤讓 App.tsx 捕捉
+    throw new Error(error.message || "Gemini 解析失敗");
   }
 };
